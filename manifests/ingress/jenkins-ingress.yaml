@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jenkins-ingress                # Ingress 리소스의 이름
+  namespace: jenkins                   # Jenkins 네임스페이스에서 생성
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # HTTP -> HTTPS 리디렉션 활성화
+    cert-manager.io/cluster-issuer: "hwseo-site-clusterissuer"  # cert-manager를 사용하여 인증서 발급
+spec:
+  ingressClassName: hwseo-ingress      # 사용하려는 Ingress 클래스 지정 (Nginx Ingress Controller를 사용할 때 설정)
+  rules:
+    - host: jenkins.hwseo.site         # Jenkins가 접근할 도메인
+      http:
+        paths:
+          - path: /                    # 모든 경로에 대해 처리
+            pathType: Prefix
+            backend:
+              service:
+                name: jenkins         # Jenkins 서비스 이름
+                port:
+                  number: 8080       # Jenkins 서비스의 포트
+  tls:
+    - hosts:
+        - jenkins.hwseo.site          # TLS 인증서를 적용할 도메인
+      secretName: hwseo-site-tls       # TLS 인증서가 저장된 Secret 이름
+

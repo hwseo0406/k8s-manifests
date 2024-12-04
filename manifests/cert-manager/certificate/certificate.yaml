@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: hwseo-site-cert
+  namespace: cert-manager
+spec:
+  secretName: hwseo-site-tls
+  issuerRef:
+    name: hwseo-site-clusterissuer
+    kind: ClusterIssuer
+  commonName: hwseo.site
+  dnsNames:
+    - 'hwseo.site'
+    - '*.hwseo.site'
+  privateKey:
+    algorithm: RSA
+    size: 2048
+

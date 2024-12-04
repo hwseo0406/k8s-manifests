@@ -1,0 +1,13 @@
+controller:
+ runAsUser: 0
+ podSecurityContextOverride:
+ runAsUser: 0
+ runAsNonRoot: false
+ containerSecurityContext:
+ runAsUser: 0
+ runAsGroup: 0
+ readOnlyRootFilesystem: false
+ allowPrivilegeEscalation: true
+ jenkinsUrl: https://jenkins.hwseo.site
+persistence:
+ existingClaim: jenkins-pvc

@@ -1,0 +1,14 @@
+# jenkins-pvc.yaml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-pvc
+  namespace: jenkins  # PVC가 속할 네임스페이스 설정
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi  # PVC 크기
+

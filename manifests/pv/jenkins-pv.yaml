@@ -1,0 +1,15 @@
+# jenkins-pv.yaml
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins-pv
+spec:
+  capacity:
+    storage: 10Gi  # 스토리지 크기
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:  # 로컬 스토리지 사용 시, 클러스터 내의 경로를 지정
+    path: /mnt/data/jenkins
+
