@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: hwwseo/hwseo-site:37
+          image: hwwseo/hwseo-site:38
           ports:
             - containerPort: 80
 
